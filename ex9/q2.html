@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket</title>
+</head>
+<style>
+    body {
+        text-align: center;
+        font-size: 30px;
+    }
+</style>
+
+<body>
+    <h2>Book your Ticket</h2>
+    <h3>Name</h3>
+    <input type="text" placeholder="Name" id="name">
+    <input type="number" id="seating" placeholder="Enter 1 for First Class, 2 for Economy">
+    <button onclick="check()">Check</button>
+    <h2 id="ticket"></h2>
+</body>
+
+</html>
+<script>
+    let first = [0, 0, 0, 0, 0];  // Represents availability for first class (0 = available, 1 = taken)
+    let economy = [0, 0, 0, 0, 0];  // Represents availability for economy class (0 = available, 1 = taken)
+
+    function t(a, i, x) {
+        let element = document.getElementById("ticket");
+        if (x == 1) {
+            element.innerHTML = `Name: ${a}<br>Seat: ${i}<br>Class: First Class`;
+        } else {
+            element.innerHTML = `Name: ${a}<br>Seat: ${i}<br>Class: Economy Class`;
+        }
+    }
+
+    function check() {
+        let name = document.getElementById("name").value;
+        let x = document.getElementById("seating").value;
+
+        // Validate input
+        if (!name || (x !== "1" && x !== "2")) {
+            alert("Please enter a valid name and select either 1 for First Class or 2 for Economy");
+            return;
+        }
+
+        if (x == 1) {
+            checkf();  // Check for first class
+        } else if (x == 2) {
+            checke();  // Check for economy class
+        } else {
+            alert("Please enter either 1 for First Class or 2 for Economy");
+        }
+    }
+
+    function checkf() {
+        let name = document.getElementById("name").value;
+        let seatingno = 0;
+        let foundseat = 0;
+
+        for (let i = 0; i < 5; i++) {
+            if (first[i] == 0) {  // Check for available first class seat
+                seatingno = i + 1;  // Seat number starts from 1
+                first[i] = 1;  // Mark the seat as taken
+                foundseat = 1;
+                break;
+            }
+        }
+
+        if (foundseat == 1) {
+            t(name, seatingno, 1);  // Display the ticket information
+        } else {
+            document.getElementById("ticket").innerHTML = `<p>No first class tickets available. Do you want economy tickets?</p><button id='ce'>Yes</button>`;
+            document.getElementById("ce").addEventListener('click', checke);  // Allow user to switch to economy
+        }
+    }
+
+    function checke() {
+        let name = document.getElementById("name").value;
+        let seatingno = 0;
+        let foundseat = 0;
+
+        for (let i = 0; i < 5; i++) {
+            if (economy[i] == 0) {  // Check for available economy seat
+                seatingno = i + 1;  // Seat number starts from 1
+                economy[i] = 1;  // Mark the seat as taken
+                foundseat = 1;
+                break;
+            }
+        }
+
+        if (foundseat == 1) {
+            t(name, seatingno, 2);  // Display the ticket information
+        } else {
+            document.getElementById("ticket").innerHTML = `<p>No economy tickets available. Do you want first class tickets?</p><button id='cf'>Yes</button>`;
+            document.getElementById("cf").addEventListener('click', checkf);  // Allow user to switch to first class
+        }
+    }
+</script>

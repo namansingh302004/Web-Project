@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+</body>
+<script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+
+    // Set canvas size
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // Draw sun
+    ctx.beginPath();
+    ctx.arc(850, 100, 40, 0, 2 * Math.PI);
+    ctx.fillStyle = "yellow";
+    ctx.fill();
+    //ctx.stroke();
+    for (let i = 0; i < 12; i++) {
+        let angle = (i * Math.PI) / 6;
+        let x1 = 850 + Math.cos(angle) * 50;
+        let y1 = 100 + Math.sin(angle) * 50;
+        let x2 = 850 + Math.cos(angle) * 60;
+        let y2 = 100 + Math.sin(angle) * 60;
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
+    }
+
+    // Draw house
+    ctx.fillStyle = "orange";
+    ctx.fillRect(50, 400, 200, 250);
+    ctx.fillStyle = "red";
+    ctx.beginPath();
+    ctx.moveTo(50, 400);
+    ctx.lineTo(250, 400);
+    ctx.lineTo(150, 250);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+    ctx.fillStyle = "brown";
+    ctx.fillRect(130, 560, 30, 90);
+    ctx.fillStyle = "blue";
+    ctx.fillRect(60, 460, 50, 50);
+
+    // Draw pond
+    ctx.beginPath();
+    ctx.ellipse(480, 400, 200, 80, 0, 0, 2 * Math.PI);
+    ctx.fillStyle = "lightblue";
+    ctx.fill();
+    ctx.stroke();
+
+    // Draw boat
+    ctx.fillStyle = "brown";
+    ctx.beginPath();
+    ctx.moveTo(460, 400);
+    ctx.lineTo(580, 400);
+    ctx.lineTo(560, 440);
+    ctx.lineTo(470, 440);
+    ctx.lineTo(460, 400);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+
+    // Draw flower
+    ctx.fillStyle = "pink";
+    for (let i = 0; i < 5; i++) {
+        let angle = (i * 2 * Math.PI) / 5;
+        let x = 800 + Math.cos(angle) * 20;
+        let y = 580 + Math.sin(angle) * 20;
+        ctx.beginPath();
+        ctx.arc(x, y, 15, 0, 2 * Math.PI);
+        ctx.fill();
+    }
+    ctx.fillStyle = "yellow";
+    ctx.beginPath();
+    ctx.arc(800, 580, 10, 0, 2 * Math.PI);
+    ctx.fill();
+    ctx.fillStyle = "green";
+    ctx.fillRect(800, 610, 4, 30);
+
+    // Draw bird
+    ctx.fillStyle = "yellow";
+    ctx.beginPath();
+    ctx.arc(735, 600, 15, 0, 2 * Math.PI);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(750, 580, 10, 0, 2 * Math.PI);
+    ctx.fill();
+    ctx.fillStyle = "black";
+    ctx.beginPath();
+    ctx.arc(750, 575, 3, 0, 2 * Math.PI);
+    ctx.fill();
+    ctx.fillStyle = "orange";
+    ctx.beginPath();
+    ctx.moveTo(760, 570);
+    ctx.lineTo(765, 578);
+    ctx.lineTo(760, 583);
+
+    ctx.closePath();
+    ctx.fill();
+
+    // Draw rocks
+    const rocks = [
+        [180, 680, 20], [200, 685, 16], [220, 680, 16],
+        [720, 670, 20], [730, 675, 16], [740, 670, 16]
+    ];
+    ctx.fillStyle = "gray";
+    rocks.forEach(([x, y, r]) => {
+        ctx.beginPath();
+        ctx.arc(x, y, r, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.stroke();
+    });
+
+
+    //q2
+    let boatYOffset = 0;
+    let boatDirection = 1;
+
+    // Function to draw the entire scene
+    function drawScene() {
+
+
+        // Draw pond
+        ctx.beginPath();
+        ctx.ellipse(480, 400, 200, 80, 0, 0, 2 * Math.PI);
+        ctx.fillStyle = "lightblue";
+        ctx.fill();
+        ctx.stroke();
+
+        // Draw boat (Animated)
+        ctx.fillStyle = "brown";
+        ctx.beginPath();
+        ctx.moveTo(460, 400 + boatYOffset);
+        ctx.lineTo(580, 400 + boatYOffset);
+        ctx.lineTo(560, 440 + boatYOffset);
+        ctx.lineTo(470, 440 + boatYOffset);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+    }
+    function animateBoat() {
+        boatYOffset += boatDirection * 0.5; // Move up and down slowly
+
+        // Reverse direction when reaching limits
+        if (boatYOffset > 5 || boatYOffset < -5) {
+            boatDirection *= -1;
+        }
+
+        drawScene(); // Redraw the scene with updated boat position
+
+        requestAnimationFrame(animateBoat); // Keep animating
+    }
+
+    // Start the animation
+    animateBoat();
+
+
+</script>
+
+</html>

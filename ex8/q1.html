@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    button{
+        padding: 10px;
+        font-size: 20px;
+    }
+    body{
+        text-align: center;
+        font-size: 30px;
+    }
+</style>
+<script>
+    let n1 = 0;
+    let n2 = 0;
+function num1(){
+     n1 = parseInt(prompt("Enter number 1","eg:10"));
+}
+function num2(){
+     n2 = parseInt(prompt("Enter number 1"));
+}
+function add() {
+    let a = n1+n2;
+  alert(`${n1}+${n2}=${a}`);
+}
+function sub() {
+    let a = n1-n2;
+  alert(`${n1}-${n2}=${a}`);
+}
+function mul() {
+    let a = n1*n2;
+  alert(`${n1}*${n2}=${a}`);
+}
+function div() {
+    let a = n1/n2;
+  alert(`${n1}/${n2}=${a}`);
+}
+</script>
+<body>
+ 
+    <h1>Calculator</h1>
+    <button id="number1" onclick="num1()">Enter number 1</button>
+    <button onclick="num2()">Enter number 2</button>
+    <br> <br>
+    <button onclick="add()">add</button>
+    <button onclick="sub()">sub</button>
+    <button onclick="mul()">mul</button>
+    <button onclick="div()">div</button>
+   
+   
+   
+   
+    </body>
+</html>

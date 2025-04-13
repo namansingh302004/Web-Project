@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Charts with User Input</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        .chart-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            display: none;
+            /* Hide charts initially */
+        }
+
+        .chart-container.active {
+            display: block;
+            /* Show active chart */
+        }
+
+        .buttons,
+        .inputs {
+            text-align: center;
+            margin: 20px;
+        }
+
+        .buttons button,
+        .inputs button {
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .buttons button:hover,
+        .inputs button:hover {
+            background-color: #0056b3;
+        }
+
+        .inputs {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .inputs input {
+            width: 80%;
+            max-width: 400px;
+            padding: 8px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body onload="createCharts()">
+
+    <div class="buttons">
+        <button onclick="showChart('barChart')">Bar Chart</button>
+        <button onclick="showChart('lineChart')">Line Chart</button>
+        <button onclick="showChart('pieChart')">Pie Chart</button>
+        <button onclick="showChart('donutChart')">Donut Chart</button>
+    </div>
+
+    <div class="inputs">
+        <h3>Enter Data (comma-separated values)</h3>
+        <label>Bar Chart (Y-values): <input type="text" id="barData" placeholder="e.g., 10,20,30,40"></label>
+        <label>Line Chart (Y-values): <input type="text" id="lineData" placeholder="e.g., 5,15,25,35"></label>
+        <label>Pie Chart (Values): <input type="text" id="pieData" placeholder="e.g., 30,20,25,25"></label>
+        <label>Donut Chart (Values): <input type="text" id="donutData" placeholder="e.g., 40,30,20,10"></label>
+        <button onclick="updateCharts()">Update Charts</button>
+    </div>
+
+    <div class="chart-container active" id="barChart"></div>
+    <div class="chart-container" id="lineChart"></div>
+    <div class="chart-container" id="pieChart"></div>
+    <div class="chart-container" id="donutChart"></div>
+
+    <script>
+        let defaultBarData = [20, 14, 23, 30];
+        let defaultLineData = [10, 15, 7, 20, 25];
+        let defaultPieData = [30, 20, 25, 25];
+        let defaultDonutData = [40, 30, 20, 10];
+
+        function createCharts() {
+            plotCharts(defaultBarData, defaultLineData, defaultPieData, defaultDonutData);
+        }
+
+        function plotCharts(barY, lineY, pieValues, donutValues) {
+            let categories = ['Category A', 'Category B', 'Category C', 'Category D'];
+            let lineX = [1, 2, 3, 4, 5];
+
+            // Bar Chart
+            Plotly.newPlot('barChart', [{
+                x: categories,
+                y: barY,
+                type: 'bar',
+                marker: { color: ['red', 'blue', 'green', 'orange'] }
+            }], { title: 'Bar Chart', xaxis: { title: 'Categories' }, yaxis: { title: 'Values' } });
+
+            // Line Chart
+            Plotly.newPlot('lineChart', [{
+                x: lineX,
+                y: lineY,
+                type: 'scatter',
+                mode: 'lines+markers',
+                marker: { color: 'blue' }
+            }], { title: 'Line Chart', xaxis: { title: 'Time' }, yaxis: { title: 'Values' } });
+
+            // Pie Chart
+            Plotly.newPlot('pieChart', [{
+                labels: ['Apple', 'Banana', 'Cherry', 'Dates'],
+                values: pieValues,
+                type: 'pie'
+            }], { title: 'Pie Chart' });
+
+            // Donut Chart
+            Plotly.newPlot('donutChart', [{
+                labels: ['Red', 'Blue', 'Yellow', 'Green'],
+                values: donutValues,
+                type: 'pie',
+                hole: 0.4
+            }], { title: 'Donut Chart' });
+        }
+
+        function showChart(chartId) {
+            document.querySelectorAll('.chart-container').forEach(chart => {
+                chart.classList.remove('active');
+            });
+            document.getElementById(chartId).classList.add('active');
+        }
+
+        function updateCharts() {
+            let barY = parseInput(document.getElementById('barData').value, defaultBarData);
+            let lineY = parseInput(document.getElementById('lineData').value, defaultLineData);
+            let pieValues = parseInput(document.getElementById('pieData').value, defaultPieData);
+            let donutValues = parseInput(document.getElementById('donutData').value, defaultDonutData);
+
+            plotCharts(barY, lineY, pieValues, donutValues);
+        }
+
+        function parseInput(input, defaultValue) {
+            let values = input.split(',').map(Number).filter(n => !isNaN(n));
+            return values.length > 0 ? values : defaultValue;
+        }
+    </script>
+
+</body>
+
+</html>

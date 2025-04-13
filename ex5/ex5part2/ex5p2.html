@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Media and Graphics</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    footer {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 0.9em;
+      color: gray;
+    }
+
+    canvas {
+      border: 2px solid #000;
+      background-color: #f5f5f5;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <nav class="sidebar">
+      <ul>
+        <li><a href="#audio">Audio</a></li>
+        <li><a href="#video">Video</a></li>
+        <li><a href="#canvas">Canvas</a></li>
+        <li><a href="#svg">SVG</a></li>
+      </ul>
+    </nav>
+
+    <main class="content">
+      <section id="audio">
+        <h2>Audio</h2>
+        <audio controls>
+          <source src="audio-file.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </section>
+
+      <section id="video">
+        <h2>Video</h2>
+        <video controls width="320" height="240">
+          <source src="video-file.mp4" type="video/mp4">
+          Your browser does not support the video element.
+        </video>
+      </section>
+
+      <section id="canvas">
+        <h2>Canvas</h2>
+        <canvas id="myCanvas" width="200" height="200"></canvas>
+      </section>
+
+      <section id="svg">
+        <h2>My House using SVG</h2>
+        <iframe src="house.svg" width="400" height="300" frameborder="0"></iframe>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    Created by Naman Kumar Singh | Reg No: 23BCE1354
+  </footer>
+
+  <script>
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = 'yellow';
+    ctx.fillRect(50, 50, 100, 100);
+    ctx.arc(100, 100, 50, 0, 2 * Math.PI);
+    ctx.stroke();
+  </script>
+</body>
+
+</html>

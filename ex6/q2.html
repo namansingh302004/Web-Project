@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f1f1f1;
+            margin: 0;
+        }
+
+        table {
+            background-color: rgb(134, 234, 252);
+            padding: 10px;
+            border-spacing: 6px;
+            margin: 30px auto;
+            border-radius: 10px;
+        }
+
+        td {
+            border: 1px solid #ccc;
+            width: 65px;
+            height: 65px;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        td:hover {
+            background-color: rgb(229, 255, 85);
+            transform: scale(1.1);
+        }
+
+        .input {
+            width: 220px;
+            height: 40px;
+            background-color: rgb(121, 164, 204);
+            box-shadow: 0px 0px 5px 0px;
+            text-align: right;
+            padding: 10px;
+            font-size: 22px;
+            border-radius: 4px;
+            overflow: hidden;
+            color: white;
+        }
+
+        .darkpink {
+            background-color: rgb(245, 84, 111);
+            color: white;
+            box-shadow: 0px 3px rgb(167, 57, 75);
+        }
+
+        .no {
+            background-color: rgb(255, 255, 255);
+            color: black;
+        }
+
+        .no2 {
+            background-color: rgb(247, 222, 226);
+        }
+
+        .no3 {
+            background-color: rgb(158, 243, 30);
+        }
+
+        .no4 {
+            background-color: rgb(170, 146, 192);
+        }
+
+        .no3:hover {
+            background-color: rgb(135, 225, 0);
+        }
+
+        .no4:hover {
+            background-color: rgb(139, 121, 179);
+        }
+
+        .no2:hover {
+            background-color: rgb(215, 180, 188);
+        }
+
+        .no:hover {
+            background-color: rgb(223, 223, 223);
+        }
+    </style>
+</head>
+
+<body>
+
+    <table>
+        <tr>
+            <td class="darkpink" onclick="clearDisplay()">C</td>
+            <td colspan="3">
+                <div class="input" id="display"></div>
+            </td>
+        </tr>
+        <tr>
+            <td class="no" onclick="appendValue('7')">7</td>
+            <td class="no" onclick="appendValue('8')">8</td>
+            <td class="no" onclick="appendValue('9')">9</td>
+            <td class="no2" onclick="appendValue('*')">*</td>
+        </tr>
+        <tr>
+            <td class="no" onclick="appendValue('4')">4</td>
+            <td class="no" onclick="appendValue('5')">5</td>
+            <td class="no" onclick="appendValue('6')">6</td>
+            <td class="no2" onclick="appendValue('-')">-</td>
+        </tr>
+        <tr>
+            <td class="no4" onclick="appendValue('1')">1</td>
+            <td class="no" onclick="appendValue('2')">2</td>
+            <td class="no" onclick="appendValue('3')">3</td>
+            <td class="no2" onclick="appendValue('+')">+</td>
+        </tr>
+        <tr>
+            <td class="no" onclick="appendValue('0')">0</td>
+            <td class="no" onclick="appendValue('.')">.</td>
+            <td class="no3" onclick="calculateResult()">=</td>
+            <td class="no2" onclick="appendValue('/')">/</td>
+        </tr>
+    </table>
+
+    <script>
+        const display = document.getElementById("display");
+
+        function appendValue(val) {
+            display.textContent += val;
+        }
+
+        function clearDisplay() {
+            display.textContent = "";
+        }
+
+        function calculateResult() {
+            try {
+                display.textContent = eval(display.textContent);
+            } catch (e) {
+                display.textContent = "Error";
+            }
+        }
+    </script>
+
+</body>
+
+</html>

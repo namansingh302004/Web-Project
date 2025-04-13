@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        text-align: center;
+    }
+
+    button {
+        padding: 20px;
+        font-size: 20px;
+        margin: 10px;
+    }
+</style>
+<script>
+    let hour = 0;
+    let costs = 0;
+
+    function hours() {
+        let h = prompt("Enter total hours of work:");
+        hour = parseInt(h);
+    }
+
+    function cost() {
+        let c = prompt("Enter cost of materials:");
+        costs = parseInt(c);
+    }
+
+    function calculate() {
+        let lc = 45 * hour;  // Charge per hour is Rs. 45
+        let ans = lc + costs;
+        document.getElementById("ans").innerHTML = `Rs. ${ans}`;
+    }
+</script>
+
+<body>
+    <h1 style="font-size: 50px;">Calculate Total Charge</h1>
+    <button onclick="hours()">Enter total hours of work</button>
+    <button onclick="cost()">Enter cost of materials</button>
+    <br><br><br>
+    <button onclick="calculate()">Calculate</button>
+    <br>
+    <h1>Total Charge: </h1>
+    <h2 id="ans">-</h2>
+</body>
+
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Categories</title>
+    <style>
+        table {
+            width: 50%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid black;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Temperature Categories</h2>
+    <table id="tablerows" cellpadding="10px" cellspacing="0px" border="1px">
+        <tr>
+            <th>Temperature</th>
+            <th>Category</th>
+        </tr>
+    </table>
+    <br>
+    <table cellspacing="0px" border="1px">
+        <tr>
+            <th>HOT</th>
+            <th>PLEASANT</th>
+            <th>COLD</th>
+        </tr>
+        <tr>
+            <td id="t1"></td>
+            <td id="t2"></td>
+            <td id="t3"></td>
+        </tr>
+    </table>
+
+    <script>
+        let hot = 0;
+        let pleasant = 0;
+        let cold = 0;
+
+        function f() {
+            // Clear previous content before adding new rows
+            document.getElementById("tablerows").innerHTML = `<tr><th>Temperature</th><th>Category</th></tr>`;
+
+            let arr = [55, 62, 68, 74, 59, 45, 41, 58, 60, 67, 65, 78, 82, 88, 91, 92, 90, 93, 87, 80, 78, 79, 72, 68, 61, 59, 55, 65];
+
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i] >= 85) {
+                    document.getElementById("tablerows").innerHTML += `<tr><td>${arr[i]}</td><td>HOT</td></tr>`;
+                    hot++;
+                } else if (arr[i] >= 60 && arr[i] <= 84) {
+                    document.getElementById("tablerows").innerHTML += `<tr><td>${arr[i]}</td><td>PLEASANT</td></tr>`;
+                    pleasant++;
+                } else {
+                    document.getElementById("tablerows").innerHTML += `<tr><td>${arr[i]}</td><td>COLD</td></tr>`;
+                    cold++;
+                }
+            }
+
+            // Display the counts in the second table
+            document.getElementById("t1").innerHTML = hot;
+            document.getElementById("t2").innerHTML = pleasant;
+            document.getElementById("t3").innerHTML = cold;
+        }
+
+        f();  // Call function to populate the tables
+    </script>
+</body>
+
+</html>

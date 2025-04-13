@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Booth</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        input {
+            height: 25px;
+            width: 50px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        textarea {
+            width: 150px;
+            height: 30px;
+            margin-left: 20px;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        p {
+            font-size: 1.2em;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>TICKET BOOTH</h1>
+    <p>Adults (&#8377;10 each)</p>
+    <input id="a" type="text" placeholder="Enter number">
+
+    <p>Children (&#8377;5 each)</p>
+    <input id="c" type="text" placeholder="Enter number">
+    <br><br>
+    <div>
+        <button onclick="tot()">Calculate Total</button>
+        <textarea id="ans" readonly></textarea>
+    </div>
+
+    <script>
+        function tot() {
+            let a = parseInt(document.getElementById("a").value) || 0;  // Default to 0 if not a valid number
+            let b = parseInt(document.getElementById("c").value) || 0;  // Default to 0 if not a valid number
+
+            if (a < 0 || b < 0) {
+                alert("Please enter valid numbers.");
+                return;
+            }
+
+            let total = a * 10 + b * 5;
+            document.getElementById("ans").value = "₹" + total;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pet Animals</title>
+  <style>
+    .rainbow {
+      background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+      -webkit-background-clip: text;
+      color: transparent;
+      font-size: 3em;
+      text-align: center;
+    }
+
+    .description {
+      column-count: 2;
+      column-gap: 20px;
+      line-height: 30pt;
+      padding: 20px;
+    }
+
+    .background-image {
+      background: url('images.jpeg') no-repeat center center;
+      background-size: contain;
+      height: 250px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 2em;
+    }
+
+    .play-area {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    #ball {
+      animation: playBall 2s infinite ease-in-out;
+    }
+
+    @keyframes playBall {
+      0% {
+        transform: translate(0, 0) rotate(0deg) skewX(0deg);
+      }
+
+      25% {
+        transform: translate(50px, 0) rotate(45deg) skewX(10deg);
+      }
+
+      50% {
+        transform: translate(50px, 50px) rotate(90deg) skewX(20deg);
+      }
+
+      75% {
+        transform: translate(0, 50px) rotate(135deg) skewX(10deg);
+      }
+
+      100% {
+        transform: translate(0, 0) rotate(180deg) skewX(0deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1 class="rainbow">Welcome to the Pet Animals Page</h1>
+  </header>
+
+  <section class="description">
+    <p>
+      Dogs and cats make wonderful pets! They provide companionship, entertainment, and endless love.
+    </p>
+    <p>
+      Caring for pets teaches responsibility, empathy, and the importance of nurturing another living being. Birds, with
+      their vibrant colors and cheerful chirping, add liveliness to any home, while fish provide a calming presence with
+      their graceful swimming. Even exotic pets like turtles, lizards, or parrots create unique bonds with their owners.
+      Spending time with pets fosters emotional well-being, as they offer unconditional love and companionship. Whether
+      its a dog eagerly wagging its tail, a cat curling up in your lap, or a rabbit nibbling on a treat, pets remind us
+      of the beauty of simple moments and the value of connection.
+    </p>
+  </section>
+
+  <div class="background-image">
+
+  </div>
+
+  <div class="play-area">
+    <svg id="ball" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="40" fill="red" />
+    </svg>
+    <p>A ball!</p>
+  </div>
+</body>
+
+</html>

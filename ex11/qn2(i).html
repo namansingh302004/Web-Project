@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        text-align: center;
+        font-size: 70px;
+        font-family: fantasy;
+        background-color: rgb(0, 0, 0);
+        color: white;
+    }
+
+    button {
+        font-size: 20px;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid grey;
+        font-weight: 600;
+    }
+
+    #time {
+
+        margin: 10px;
+    }
+
+    .content {
+        margin: 250px;
+    }
+
+    .heading {
+        font-size: 40px;
+        color: rgba(172, 30, 30, 0.911);
+    }
+
+    button {
+        background-color: rgba(10, 136, 209, 0.904);
+    }
+</style>
+
+<body>
+    <p class="heading">Stopwatch</p>
+    <div class="content">
+
+        <div id="time">00 : 00 : 00</div>
+        <button id="start">Start</button>
+        <button id="reset">Reset</button>
+    </div>
+</body>
+<script>
+    let seconds = 0;
+    let minutes = 0;
+    let hours = 0;
+    let running = false;
+    let interval;
+
+    let timedisplay = document.getElementById('time');
+    function displaytime() {
+        timedisplay.textContent = `${formattime(hours)} : ${formattime(minutes)} : ${formattime(seconds)}`;
+    }
+    function formattime(num) {
+        if (num < 10) {
+            return `0${num}`;
+        }
+        else {
+            return num;
+        }
+    }
+
+    let startbutton = document.getElementById('start');
+    let resetButton = document.getElementById('reset');
+
+    function updatetimer() {
+
+
+        if (seconds < 60) {
+            seconds++;
+
+        }
+        else {
+            seconds = formattime(0);
+
+            if (minutes < 60) {
+                minutes++;
+
+            }
+            else {
+                minutes = formattime(0);
+                hours++;
+
+            }
+        }
+        displaytime();
+
+    }
+
+    startbutton.addEventListener("click", function () {
+        if (running) {
+            clearInterval(interval);
+            startbutton.textContent = "Start";
+        }
+        else {
+
+            startbutton.textContent = `Stop`;
+            interval = setInterval(updatetimer, 1000);
+
+        }
+        running = !running;
+    });
+    resetButton.addEventListener("click", function () {
+        startbutton.textContent = "Start";
+        seconds = 0;
+        minutes = 0;
+        hours = 0;
+        displaytime();
+        running = false;
+        clearInterval(interval);
+    })
+
+</script>
+
+</html>

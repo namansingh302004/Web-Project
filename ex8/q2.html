@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    button {
+        padding: 10px;
+        font-size: 20px;
+    }
+
+    body {
+        text-align: center;
+        font-size: 30px;
+    }
+</style>
+<script>
+    let n1 = 0;
+    let n2 = 0;
+
+    function num1() {
+        let input = prompt("Enter number 1", "eg: 10");
+        if (isNaN(input) || input === "") {
+            alert("Please enter a valid number for number 1.");
+        } else {
+            n1 = parseFloat(input);
+        }
+    }
+
+    function num2() {
+        let input = prompt("Enter number 2", "eg: 5");
+        if (isNaN(input) || input === "") {
+            alert("Please enter a valid number for number 2.");
+        } else {
+            n2 = parseFloat(input);
+        }
+    }
+
+    function add() {
+        let a = n1 + n2;
+        alert(`${n1} + ${n2} = ${a}`);
+    }
+
+    function sub() {
+        let a = n1 - n2;
+        alert(`${n1} - ${n2} = ${a}`);
+    }
+
+    function mul() {
+        let a = n1 * n2;
+        alert(`${n1} * ${n2} = ${a}`);
+    }
+
+    function div() {
+        if (n2 === 0) {
+            alert("Cannot divide by zero.");
+        } else {
+            let a = n1 / n2;
+            alert(`${n1} / ${n2} = ${a}`);
+        }
+    }
+</script>
+
+<body>
+    <h1>Calculator</h1>
+    <button id="number1" onclick="num1()">Enter number 1</button>
+    <button onclick="num2()">Enter number 2</button>
+    <br> <br>
+    <button onclick="add()">Add</button>
+    <button onclick="sub()">Subtract</button>
+    <button onclick="mul()">Multiply</button>
+    <button onclick="div()">Divide</button>
+</body>
+
+</html>

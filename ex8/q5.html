@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Add some basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+
+        div {
+            margin: 10px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Style for the reg div */
+        #reg {
+            border: 15px solid red;
+            width: 200px;
+            height: 40px;
+            line-height: 40px;
+            margin: auto;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        /* Style for the name div */
+        #name {
+            border: 2px solid black;
+            width: 200px;
+            height: 40px;
+            line-height: 40px;
+            margin: auto;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: red;
+        }
+
+        button {
+            padding: 15px;
+            font-size: 1.2em;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>JavaScript Program</h1>
+    <button onclick="e1()">Enter Reg. No</button>
+    <button onclick="e2()">Enter Name</button>
+
+    <h3>Registration Number:</h3>
+    <div id="reg"></div>
+
+    <h3>Name:</h3>
+    <div id="name"></div>
+
+    <script>
+        function e1() {
+            let n1 = prompt("Enter Registration Number:");
+            // Basic validation (ensure the input is not empty)
+            if (n1) {
+                document.getElementById("reg").innerHTML = `<div>${n1}</div>`;
+            } else {
+                alert("Please enter a valid Registration Number.");
+            }
+        }
+
+        function e2() {
+            let n2 = prompt("Enter Name:");
+            // Basic validation (ensure the input is not empty)
+            if (n2) {
+                document.getElementById("name").innerHTML = `<div>${n2}</div>`;
+            } else {
+                alert("Please enter a valid Name.");
+            }
+        }
+    </script>
+</body>
+
+</html>
